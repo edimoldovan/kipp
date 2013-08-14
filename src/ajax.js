@@ -1,18 +1,20 @@
 !function(kipp, window, document){
+  "use strict";
   kipp.JSONP = function(params, callback){
     // adapted from Zepto
     var jsonpString = 'jsonp' + kipp.id()
       , script = document.createElement('script')
-      , running = false
+      , running = false;
 
       kipp.JSONP[jsonpString] = function(data){
-        running = false
-        delete kipp.JSONP[jsonpString]
-        callback(data)
-      }
+        running = false;
+        delete kipp.JSONP[jsonpString];
+        callback(data);
+      };
 
-      if (typeof params.data == 'object')
-        params.data = kipp.toQueryString(params.data)
+      if (typeof params.data === 'object') {
+        params.data = kipp.toQueryString(params.data);
+      }
 
     var publik = {
       send: function (){
